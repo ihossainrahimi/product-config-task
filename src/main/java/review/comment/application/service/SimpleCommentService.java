@@ -14,6 +14,8 @@ import review.userproduct.application.service.UserProductService;
 
 import java.util.List;
 
+import static review.product.domain.entity.Product.CommentAuthority.*;
+
 @Service
 public class SimpleCommentService implements CommentService {
 
@@ -75,13 +77,13 @@ public class SimpleCommentService implements CommentService {
 
     private void validateUserCouldComment(Integer userId, Integer productId) {
         var product = productService.getById(productId);
-        if (product.getCommentAuthority() == Product.CommentAuthority.ALL) {
+        if (product.getCommentAuthority() == ALL) {
             return;
         }
-        if (product.getCommentAuthority() == Product.CommentAuthority.NO_BODY) {
+        if (product.getCommentAuthority() == NO_BODY) {
             throw new ProductIsNotCommentable();
         }
-        if (product.getCommentAuthority() == Product.CommentAuthority.ONLY_BUYERS) {
+        if (product.getCommentAuthority() == ONLY_BUYERS) {
             try {
                 userProductService.getByUserIdAndProductIdWhereStatusIsApproved(userId, productId);
             } catch (UserProductNotFoundException e) {

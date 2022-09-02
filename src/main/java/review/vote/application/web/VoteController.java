@@ -16,8 +16,8 @@ public class VoteController {
 
     private final VoteService voteService;
 
-    @ResponseStatus(CREATED)
     @PostMapping(VOTE)
+    @ResponseStatus(CREATED)
     public void create(@RequestBody @Validated VoteCreationDto dto) {
         voteService.create(dto.toVote());
     }

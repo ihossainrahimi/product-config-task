@@ -11,6 +11,8 @@ import review.vote.domain.repository.VoteRepository;
 
 import java.util.List;
 
+import static review.product.domain.entity.Product.VoteAuthority.*;
+
 @Service
 public class SimpleVoteService implements VoteService {
 
@@ -57,13 +59,13 @@ public class SimpleVoteService implements VoteService {
 
     private void validateUserCouldVote(Integer userId, Integer productId) {
         var product = productService.getById(productId);
-        if (product.getCommentAuthority() == Product.CommentAuthority.ALL) {
+        if (product.getVoteAuthority() == ALL) {
             return;
         }
-        if (product.getCommentAuthority() == Product.CommentAuthority.NO_BODY) {
+        if (product.getVoteAuthority() == NO_BODY) {
             throw new ProductIsNotVotable();
         }
-        if (product.getCommentAuthority() == Product.CommentAuthority.ONLY_BUYERS) {
+        if (product.getVoteAuthority() == ONLY_BUYERS) {
             try {
                 userProductService.getByUserIdAndProductIdWhereStatusIsApproved(userId, productId);
             } catch (UserProductNotFoundException e) {
