@@ -26,7 +26,7 @@ public class Comment {
     }
 
     public enum State {
-        INIT,
+        INITIAL,
         APPROVED,
         UN_APPROVED
     }

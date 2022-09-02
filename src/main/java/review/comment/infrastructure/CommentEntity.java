@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
-import static review.comment.domain.entity.Comment.State.INIT;
+import static review.comment.domain.entity.Comment.State.INITIAL;
 
 @Entity(name = "comment")
 @NoArgsConstructor(access = PROTECTED)
@@ -65,6 +65,6 @@ public class CommentEntity {
     @PrePersist
     private void prePersist() {
         createdAt = LocalDateTime.now();
-        state = INIT;
+        state = INITIAL;
     }
 }

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
-import static review.vote.domain.entity.Vote.State.INIT;
+import static review.vote.domain.entity.Vote.State.INITIAL;
 
 @Entity(name = "vote")
 @NoArgsConstructor(access = PROTECTED)
@@ -61,6 +61,6 @@ public class VoteEntity {
     @PrePersist
     private void prePersist() {
         this.createdAt = LocalDateTime.now();
-        this.state = INIT;
+        this.state = INITIAL;
     }
 }

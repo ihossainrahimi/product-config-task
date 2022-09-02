@@ -29,7 +29,7 @@ public class Vote {
     }
 
     public enum State {
-        INIT,
+        INITIAL,
         APPROVED,
         UN_APPROVED
     }
