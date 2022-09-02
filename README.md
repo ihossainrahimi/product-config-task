@@ -39,9 +39,9 @@ If you're going to use additional configuration locations in addition to the def
 using the
 `spring.config.additional-location` configuration property.
 
-### Oracle Configurations
+### Postgres Configurations
 
-In order to have a working connection to Oracle, we should provide:
+In order to have a working connection to Postgres, we should provide:
 
 - `spring.datasource.url` Is the JDBC URL to Postgres instance with `jdbc:postgresql://{host}:5432/{database}` format.
 - `spring.datasource.username` Is the database username.
