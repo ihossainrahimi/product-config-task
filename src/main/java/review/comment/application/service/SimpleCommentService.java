@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import review.comment.domain.entity.Comment;
 import review.comment.domain.repository.CommentRepository;
 import review.product.application.service.ProductService;
-import review.product.domain.entity.Product;
 import review.shared.domain.model.Pageable;
 import review.shared.domain.model.Pagination;
 import review.user.application.service.UserService;
@@ -81,7 +80,7 @@ public class SimpleCommentService implements CommentService {
             return;
         }
         if (product.getCommentAuthority() == NO_BODY) {
-            throw new ProductIsNotCommentable();
+            throw new ProductIsNotCommentableException();
         }
         if (product.getCommentAuthority() == ONLY_BUYERS) {
             try {

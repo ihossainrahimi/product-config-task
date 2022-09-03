@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import review.comment.application.service.OnlyProductBuyersCouldCommentException;
-import review.comment.application.service.ProductIsNotCommentable;
+import review.comment.application.service.ProductIsNotCommentableException;
 import review.shared.exception.AbstractNotFoundException;
 import review.vote.application.service.OnlyProductBuyersCouldVoteException;
-import review.vote.application.service.ProductIsNotVotable;
+import review.vote.application.service.ProductIsNotVotableException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,10 +76,10 @@ public class GlobalExceptionHandler {
 
     @ResponseStatus(INTERNAL_SERVER_ERROR)
     @ExceptionHandler({
-            ProductIsNotCommentable.class,
+            ProductIsNotCommentableException.class,
             OnlyProductBuyersCouldCommentException.class,
             OnlyProductBuyersCouldVoteException.class,
-            ProductIsNotVotable.class
+            ProductIsNotVotableException.class
     })
     public ErrorsDto handleInternalServerErrorBySimpleName(Exception exception) {
         var errorCode = exception.getClass().getSimpleName();

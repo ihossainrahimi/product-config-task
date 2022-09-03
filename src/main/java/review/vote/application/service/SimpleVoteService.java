@@ -3,7 +3,6 @@ package review.vote.application.service;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import review.product.application.service.ProductService;
-import review.product.domain.entity.Product;
 import review.userproduct.application.service.UserProductNotFoundException;
 import review.userproduct.application.service.UserProductService;
 import review.vote.domain.entity.Vote;
@@ -63,7 +62,7 @@ public class SimpleVoteService implements VoteService {
             return;
         }
         if (product.getVoteAuthority() == NO_BODY) {
-            throw new ProductIsNotVotable();
+            throw new ProductIsNotVotableException();
         }
         if (product.getVoteAuthority() == ONLY_BUYERS) {
             try {
